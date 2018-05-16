@@ -25,21 +25,12 @@ const verifyLoggedIn = async () => {
   }
   return {
     type: ACTIONS_TYPE.IS_LOGGED_IN,
-    payload: { isLoggedIn: isLoggedIn }
-  }
-}
-
-const goRegisterScreen = () => {
-  alert('Dispatching')
-  return {
-    type: ACTIONS_TYPE.GO_REGISTER_SCREEN,
-    payload: { isRegisterScreen: true }
+    payload: { isLoggedIn: isLoggedIn, isLoading: false }
   }
 }
 
 export {
   executeLogin,
   verifyLoggedIn,
-  executeLogout,
-  goRegisterScreen
+  executeLogout
 }

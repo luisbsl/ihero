@@ -18,6 +18,7 @@ class LoginScreen extends React.Component {
       password: ''
     }
   }
+
   async _login() {
     try {
       await authenticate(this.state.email, this.state.password, (res) => {
@@ -32,9 +33,7 @@ class LoginScreen extends React.Component {
       alert('Error - ' + error)
     }
   }
-  _createAccount() {
-    alert('Creact Account')
-  }
+  
   _renderLoginScreen() {
     return (
       <View style={{

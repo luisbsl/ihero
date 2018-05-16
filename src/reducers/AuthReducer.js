@@ -1,6 +1,6 @@
 import ACTIONS_TYPE from '../actions/AuthActionsType'
 
-const INITIAL_STATE = { isLoggedIn: false, isRegisterScreen: false }
+const INITIAL_STATE = { isLoggedIn: false, isLoading: true }
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -11,10 +11,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, isLoggedIn: false }
 
     case ACTIONS_TYPE.IS_LOGGED_IN:
-      return { ...state, isLoggedIn: action.payload.isLoggedIn }
-
-    case ACTIONS_TYPE.GO_REGISTER_SCREEN:
-      return { ...state, isRegisterScreen: action.payload.isRegisterScreen }
+      return { ...state, isLoggedIn: action.payload.isLoggedIn, isLoading: action.payload.isLoading }
 
     default:
       return state

@@ -1,6 +1,6 @@
 import React from 'react'
 import { createNavigator, StackNavigator } from 'react-navigation'
-import { View, Text, TouchableHighlight, Image } from 'react-native'
+import { View, Text, TouchableHighlight, Image, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -14,7 +14,7 @@ import { verifyLoggedIn, executeLogout } from '../actions/AuthActions'
 import LogoutImage from '../assets/img/logout.png'
 
 class AppNavigator extends React.Component {
-  async componentWillMount() {
+  async componentDidMount() {
     await this.props.verifyLoggedIn()
   }
   render() {
@@ -30,15 +30,26 @@ class AppNavigator extends React.Component {
         }
       }
     })
-    if (this.props.isLoggedIn) {
-      return <Navigation />
-    }
-    if (!this.props.isLoggedIn) {
-      return <LoginScreen />
+    if (!this.props.isLoading) {
+      if (this.props.isLoggedIn) {
+        return <Navigation />
+      }
+      if (!this.props.isLoggedIn) {
+        return <LoginScreen />
+      }
+    } else {
+      return (
+        <View style={{
+          flex: 1,
+          justifyContent: 'center'
+        }} >
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )
     }
   }
 }
 
-const mapStateToProps = state => ({ isLoggedIn: state.auth.isLoggedIn, isRegisterScreen: state.auth.isRegisterScreen })
+const mapStateToProps = state => ({ isLoggedIn: state.auth.isLoggedIn, isLoading: state.auth.isLoading })
 const mapDispatchToProps = dispatch => bindActionCreators({ verifyLoggedIn }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(AppNavigator)

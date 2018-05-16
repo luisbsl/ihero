@@ -1,8 +1,5 @@
-import {
-  commitMutation,
-  fetchQuery,
-  graphql
-} from 'react-relay'
+import { commitMutation, fetchQuery, graphql } from 'react-relay'
+
 import environment from '../../scripts/create-environment'
 
 const mutation = graphql`
@@ -21,7 +18,7 @@ export const authenticate = (email, password, callback) => {
   }
 
   commitMutation(
-    environment,
+    environment(null),
     {
       mutation,
       variables,
@@ -44,9 +41,6 @@ const meQuery = graphql`
   }
 `
 
-export const MeQuery = () => {
-  fetchQuery(environment, meQuery)
-    .then(data => {
-      alert(JSON.stringify(data))
-    })
+export const MeQuery = (environment) => {
+  return fetchQuery(environment, meQuery)
 }

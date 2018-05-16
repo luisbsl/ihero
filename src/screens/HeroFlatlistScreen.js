@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, FlatList, TouchableHighlight, Image } from 'react-native'
+import { View, Text, FlatList, TouchableHighlight, Image, ActivityIndicator } from 'react-native'
 import { fetchQuery, QueryRenderer } from 'react-relay'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -10,6 +10,8 @@ import { getUserToken, removeUserToken } from '../providers/StorageProvider'
 import LogoutImage from '../assets/img/logout.png'
 
 import { executeLogout } from '../actions/AuthActions'
+
+import { MeQuery } from '../mutations/AuthMutation'
 
 const HeroFlatlistScreenQuery = graphql`
   query HeroFlatlistScreenQuery {
@@ -29,39 +31,52 @@ class HeroFlatlistScreen extends React.Component {
     }
   }
 
-  static navigationOptions = ({ navigation }) => (
-    {
+  static navigationOptions = ({ navigation }) => {
+    return {
       title: 'iHero',
       headerRight: (
-        <TouchableHighlight
-          style={{ marginRight: 15 }}
-          onPress={() => navigation.state.params.handleLogout()}>
-          <Image
-            source={LogoutImage} style={{ width: 30, height: 30 }} />
-        </TouchableHighlight>
+        <View>
+          <TouchableHighlight
+            style={{ marginRight: 15 }}
+            onPress={() => navigation.state.params.handleLogout()}>
+            <Image
+              source={LogoutImage} style={{ width: 30, height: 30 }} />
+          </TouchableHighlight>
+        </View>
       )
     }
-  )
+  }
 
-  componentWillMount() {
-    this.props.navigation.setParams({ handleLogout: this.props.executeLogout })
+  async componentWillMount() {
+    this.props.navigation.setParams({
+      handleLogout: this.props.executeLogout
+    })
   }
 
   async componentDidMount() {
-    const _heroes = await fetchQuery(environment, HeroFlatlistScreenQuery)
-      .then(data => {
-        let _heroArray = []
-        let _hero = {}
-        data.heroes.forEach(obj => {
-          _heroArray.push(obj)
+    const _heroes = await this._getEnviroment().then(_env => {
+      return fetchQuery(_env, HeroFlatlistScreenQuery)
+        .then(data => {
+          let _heroArray = []
+          let _hero = {}
+          data.heroes.forEach(obj => {
+            _heroArray.push(obj)
+          })
+          return _heroArray
         })
-        return _heroArray
-      })
-      .catch(error => {
-        alert(error)
-      })
+        .catch(error => {
+          alert(error)
+        })
+    })
     this.setState({ heroes: _heroes })
   }
+
+  async _getEnviroment() {
+    return await getUserToken().then(token => {
+      return environment(token)
+    })
+  }
+
   render() {
     return (
       <View>
@@ -71,8 +86,7 @@ class HeroFlatlistScreen extends React.Component {
 
         {
           this.state.heroes.length > 0
-            ? //alert(JSON.stringify(this.state.heroes))
-
+            ?
             <FlatList
               data={this.state.heroes}
               keyExtractor={(item, index) => index.toString()}
@@ -89,17 +103,17 @@ class HeroFlatlistScreen extends React.Component {
               }
             />
 
-            : <Text>
-              Nothing
-              </Text>
+            : <View style={{
+              flex: 1,
+              justifyContent: 'center'
+            }} >
+              <ActivityIndicator size="large" color="#0000ff" />
+            </View>
         }
       </View>
     )
   }
 }
 
-// export default HeroFlatlistScreen
-
-const mapStateToProps = state => ({ isLoggedIn: state.auth.isLoggedIn })
 const mapDispatchToProps = dispatch => bindActionCreators({ executeLogout }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(HeroFlatlistScreen)
+export default connect(null, mapDispatchToProps)(HeroFlatlistScreen)
