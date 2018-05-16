@@ -1,12 +1,15 @@
 import React from 'react'
-import { View, Text, Button, TextInput, AsyncStorage } from 'react-native'
+import { View, Text, Button, TextInput, TouchableHighlight } from 'react-native'
 
-import { authenticate } from '../AuthMutation'
-import { setUserToken } from '../provider/StorageProvider'
+import { authenticate } from '../mutations/AuthMutation'
+import { setUserToken } from '../providers/StorageProvider'
+
+import { goRegisterScreen } from '../actions/AuthActions'
 
 import AppNavigator from '../navigators/AppNavigator'
+import RegisterScreen from './RegisterScreen'
 
-class LoginScene extends React.Component {
+class LoginScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -22,9 +25,7 @@ class LoginScene extends React.Component {
           alert('Email or passwords invalids!')
         } else {
           setUserToken(res)
-            .then(() => {
-              this.setState({ isLoggedIn: true })
-            })
+          this.setState({ isLoggedIn: true })
         }
       })
     } catch (error) {
@@ -34,7 +35,7 @@ class LoginScene extends React.Component {
   _createAccount() {
     alert('Creact Account')
   }
-  _renderLoginScene() {
+  _renderLoginScreen() {
     return (
       <View style={{
         flex: 1,
@@ -73,11 +74,13 @@ class LoginScene extends React.Component {
             title='LOGIN'
             onPress={() => this._login()} />
 
-          <Text
-            style={{ color: '#ffffff' }}
-            onPress={() => this._createAccount()} >
-            CREATE ACCOUNT
-        </Text>
+          <TouchableHighlight onPress={() => this.setState({ isRegisterScreen: true })}>
+            <Text
+              style={{ color: '#ffffff' }}
+            >
+              CREATE ACCOUNT
+          </Text>
+          </TouchableHighlight>
         </View>
 
       </View>
@@ -87,8 +90,11 @@ class LoginScene extends React.Component {
     if (this.state.isLoggedIn) {
       return <AppNavigator />
     }
-    return this._renderLoginScene()
+    if (this.state.isRegisterScreen) {
+      return <RegisterScreen />
+    }
+    return this._renderLoginScreen()
   }
 }
 
-export default LoginScene
+export default LoginScreen

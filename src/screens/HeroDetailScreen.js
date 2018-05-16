@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text} from 'react-native'
 
-class HeroDetailScene extends React.Component {
+class HeroDetailScreen extends React.Component {
   render() {
     return (
       <View>
@@ -13,4 +13,4 @@ class HeroDetailScene extends React.Component {
   }
 }
 
-export default HeroDetailScene
+export default HeroDetailScreen

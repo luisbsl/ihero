@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8c13873bfd31ab7fd786f7514c84abd3
+ * @relayHash 2e9aa6b45a86c501532d0e2e1c757f5e
  */
 
 /* eslint-disable */
@@ -9,8 +9,8 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type HeroFlatlistSceneQueryVariables = {||};
-export type HeroFlatlistSceneQueryResponse = {|
+export type HeroFlatlistScreenQueryVariables = {||};
+export type HeroFlatlistScreenQueryResponse = {|
   +heroes: ?$ReadOnlyArray<?{|
     +id: ?string,
     +name: ?string,
@@ -22,7 +22,7 @@ export type HeroFlatlistSceneQueryResponse = {|
 
 
 /*
-query HeroFlatlistSceneQuery {
+query HeroFlatlistScreenQuery {
   heroes {
     id
     name
@@ -77,13 +77,13 @@ var v0 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "HeroFlatlistSceneQuery",
+  "name": "HeroFlatlistScreenQuery",
   "id": null,
-  "text": "query HeroFlatlistSceneQuery {\n  heroes {\n    id\n    name\n    description\n    image\n  }\n}\n",
+  "text": "query HeroFlatlistScreenQuery {\n  heroes {\n    id\n    name\n    description\n    image\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "HeroFlatlistSceneQuery",
+    "name": "HeroFlatlistScreenQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
@@ -91,12 +91,12 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "HeroFlatlistSceneQuery",
+    "name": "HeroFlatlistScreenQuery",
     "argumentDefinitions": [],
     "selections": v0
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '9784bba61bfe048e922620e1ff9430aa';
+(node/*: any*/).hash = '71bba345d26b3d7a0fd66b7891281df0';
 module.exports = node;

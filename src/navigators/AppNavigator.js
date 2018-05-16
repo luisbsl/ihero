@@ -1,58 +1,44 @@
 import React from 'react'
-import { View, Text, Button, TouchableHighlight, Image } from 'react-native'
-import FontAwesome, { Icons } from 'react-native-fontawesome'
+import { createNavigator, StackNavigator } from 'react-navigation'
+import { View, Text, TouchableHighlight, Image } from 'react-native'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-import LoginScene from '../scenes/LoginScene'
-import HeroFlatlistScene from '../scenes/HeroFlatlistScene'
-import { getUserToken } from '../provider/StorageProvider'
+import LoginScreen from '../screens/LoginScreen'
+import HeroFlatlistScreen from '../screens/HeroFlatlistScreen'
+import HeroDetailScreen from '../screens/HeroDetailScreen'
+import { getUserToken, removeUserToken } from '../providers/StorageProvider'
+
+import { verifyLoggedIn, executeLogout } from '../actions/AuthActions'
 
 import LogoutImage from '../assets/img/logout.png'
 
 class AppNavigator extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLogged: false,
-      isLoading: true
-    }
-  }
-  static navigationOptions = ({ navigation }) => (
-    {
-      title: 'iHero',
-      headerRight: (
-        // <Button
-        //   style={{ marginRight: 20 }}
-        //   title="Logout"
-        //   onPress={() => navigation.state.params.handleLogout()} />
-        <TouchableHighlight 
-          style={{paddingRight: 15}}
-          onPress={() => navigation.state.params.handleLogout()}>
-          <Image 
-            source={LogoutImage} style={{width: 30, height: 30}} />
-        </TouchableHighlight>
-      )
-    }
-  )
-  async _logout() {
-    return await alert('SAir')
-  }
-  async componentDidMount() {
-    this.props.navigation.setParams({ handleLogout: this._logout });
-    await getUserToken()
-      .then(res => {
-        if (res !== null) {
-          this.setState({ isLogged: true, isLoading: false })
-        } else {
-          this.props.navigation.navigate('Login')
-        }
-      })
+  async componentWillMount() {
+    await this.props.verifyLoggedIn()
   }
   render() {
-    if (this.state.isLoading) return null
-    if (this.state.isLogged) {
-      return <HeroFlatlistScene navigation={this.props.navigation} />
+    const Navigation = new StackNavigator({
+      HeroList: {
+        screen: HeroFlatlistScreen
+      },
+      HeroDetail: {
+        screen: HeroDetailScreen
+        ,
+        navigationOptions: {
+          title: 'Your Hero Detail'
+        }
+      }
+    })
+    if (this.props.isLoggedIn) {
+      return <Navigation />
+    }
+    if (!this.props.isLoggedIn) {
+      return <LoginScreen />
     }
   }
 }
 
-export default AppNavigator
+const mapStateToProps = state => ({ isLoggedIn: state.auth.isLoggedIn, isRegisterScreen: state.auth.isRegisterScreen })
+const mapDispatchToProps = dispatch => bindActionCreators({ verifyLoggedIn }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(AppNavigator)

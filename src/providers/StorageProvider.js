@@ -28,7 +28,7 @@ const getUserToken = async () => {
   }
 }
 
-const removeUserToken = async () => {
+const removeUserToken = async (_state) => {
   try {
     let userToken = {
       key: 'token'

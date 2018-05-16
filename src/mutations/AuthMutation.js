@@ -3,7 +3,7 @@ import {
   fetchQuery,
   graphql
 } from 'react-relay'
-import environment from '../scripts/create-environment'
+import environment from '../../scripts/create-environment'
 
 const mutation = graphql`
   mutation AuthMutation($input: LoginEmailInput!) {
