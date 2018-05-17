@@ -23,10 +23,12 @@ class AppNavigator extends React.Component {
         screen: HeroFlatlistScreen
       },
       HeroDetail: {
-        screen: HeroDetailScreen
-        ,
+        screen: HeroDetailScreen,
         navigationOptions: {
-          title: 'Your Hero Detail'
+          title: 'Your Hero Detail',
+          headerTintColor: '#4d4d4d',
+          headerStyle: {
+          },
         }
       }
     })

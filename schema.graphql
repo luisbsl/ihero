@@ -18,6 +18,9 @@ type Hero {
   name: String
   description: String
   image: String
+  comics: Int
+  series: Int
+  stories: Int
 }
 
 input LoginEmailInput {

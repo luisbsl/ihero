@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import promise from 'redux-promise'
@@ -15,16 +14,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <AppNavigator />
-      </Provider>
+      </Provider >
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})

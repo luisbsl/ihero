@@ -35,42 +35,91 @@ export default class RegisterScreen extends React.Component {
   }
   _renderRegisterScreen() {
     return (
-      <View>
-        <Text>
-          Register account
-        </Text>
-
-        <View >
-          <TextInput
-            onChangeText={(name) => this.setState({ name })}
-            style={{ height: 50, backgroundColor: '#fff' }}
-            placeholder='Name' />
-
-          <TextInput
-            onChangeText={(email) => this.setState({ email })}
-            style={{ height: 50, backgroundColor: '#fff' }}
-            placeholder='Email' />
-
-          <TextInput
-            onChangeText={(password) => this.setState({ password })}
-            style={{ height: 50, backgroundColor: '#fff' }}
-            secureTextEntry={true}
-            placeholder='Senha' />
+      <View style={{
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%'
+      }} >
+        <View
+          style={{
+            height: '40%',
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }} >
+          <Text
+            style={{
+              fontSize: 35,
+              fontWeight: 'bold',
+              color: '#4d4d4d'
+            }} >
+            Creacte your account
+          </Text>
         </View>
 
-        <Button
-          disabled={this.state.name.length < 1 || this.state.email.length < 1 || this.state.password.length < 1}
-          style={{ width: 200, height: 50 }}
-          title='Register'
-          onPress={() => this._register()} />
+        <View style={{
+          height: '40%',
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }} >
+          <View style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <View style={{ width: 300, height: 70 }}>
+              <TextInput
+                onChangeText={(name) => this.setState({ name })}
+                style={{ height: 50, backgroundColor: '#e6e6e6' }}
+                placeholder='Name' />
+            </View>
+            <View style={{ width: 300, height: 70 }}>
+              <TextInput
+                onChangeText={(email) => this.setState({ email })}
+                style={{ height: 50, backgroundColor: '#e6e6e6' }}
+                placeholder='Email' />
+            </View>
+            <View style={{ width: 300, height: 70 }}>
+              <TextInput
+                onChangeText={(password) => this.setState({ password })}
+                style={{ height: 50, backgroundColor: '#e6e6e6' }}
+                secureTextEntry={true}
+                placeholder='Senha' />
+            </View>
+          </View>
+        </View>
 
-        <TouchableHighlight onPress={() => this.setState({ isLoginScreen: true })}>
-          <Text
-          // style={{ color: '#ffffff' }}
-          >
-            Login
-          </Text>
-        </TouchableHighlight>
+        <View style={{
+          height: '20%',
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }} >
+          <View style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <View style={{ width: 150, height: 50 }}>
+              <Button
+                style={{ width: 200, height: 50 }}
+                title='CREATE'
+                onPress={() => this._register()} />
+            </View>
+
+            <View style={{ width: 150, height: 50, alignItems: 'center' }} >
+              <TouchableHighlight onPress={() => this.setState({ isLoginScreen: true })}>
+                <Text style={{ color: '#4d4d4d', fontWeight: 'bold' }}>
+                  LOGIN
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
       </View>
     )
   }

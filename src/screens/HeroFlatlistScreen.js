@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, FlatList, TouchableHighlight, Image, ActivityIndicator } from 'react-native'
+import { View, Text, FlatList, TouchableHighlight, Image, ActivityIndicator, StatusBar } from 'react-native'
 import { fetchQuery, QueryRenderer } from 'react-relay'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -10,8 +10,9 @@ import { getUserToken, removeUserToken } from '../providers/StorageProvider'
 import LogoutImage from '../assets/img/logout.png'
 
 import { executeLogout } from '../actions/AuthActions'
-
 import { MeQuery } from '../mutations/AuthMutation'
+
+import HeroCard from '../components/HeroCard'
 
 const HeroFlatlistScreenQuery = graphql`
   query HeroFlatlistScreenQuery {
@@ -20,6 +21,9 @@ const HeroFlatlistScreenQuery = graphql`
       name
     	description
       image
+      comics
+      series
+      stories
     }
   }`
 
@@ -34,6 +38,9 @@ class HeroFlatlistScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'iHero',
+      headerTintColor: '#4d4d4d',
+      headerStyle: {
+      },
       headerRight: (
         <View>
           <TouchableHighlight
@@ -57,12 +64,7 @@ class HeroFlatlistScreen extends React.Component {
     const _heroes = await this._getEnviroment().then(_env => {
       return fetchQuery(_env, HeroFlatlistScreenQuery)
         .then(data => {
-          let _heroArray = []
-          let _hero = {}
-          data.heroes.forEach(obj => {
-            _heroArray.push(obj)
-          })
-          return _heroArray
+          return data.heroes
         })
         .catch(error => {
           alert(error)
@@ -80,26 +82,22 @@ class HeroFlatlistScreen extends React.Component {
   render() {
     return (
       <View>
-        <Text>
-          Hero Flatlist
-        </Text>
-
+        <StatusBar
+          backgroundColor='#4d4d4d'
+          barStyle="light-content"
+        />
         {
           this.state.heroes.length > 0
             ?
             <FlatList
+              style={{ marginTop: 10 }}
               data={this.state.heroes}
               keyExtractor={(item, index) => index.toString()}
               renderItem={
                 ({ item }) =>
-                  <View>
-                    <Text onPress={() => this.props.navigation.navigate('HeroDetail')}>
-                      {item.name}
-                    </Text>
-                    <Text>
-                      {item.description}
-                    </Text>
-                  </View>
+                  <HeroCard
+                    hero={item}
+                    navigation={this.props.navigation} />
               }
             />
 

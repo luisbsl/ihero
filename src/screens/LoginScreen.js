@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text, Button, TextInput, TouchableHighlight } from 'react-native'
+import { View, Text, Button, TextInput, TouchableHighlight, StatusBar } from 'react-native'
+import FontAwesome, { Icons } from 'react-native-fontawesome'
 
 import { authenticate } from '../mutations/AuthMutation'
 import { setUserToken } from '../providers/StorageProvider'
@@ -33,55 +34,93 @@ class LoginScreen extends React.Component {
       alert('Error - ' + error)
     }
   }
-  
+
   _renderLoginScreen() {
     return (
       <View style={{
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#000000',
         alignItems: 'center',
         width: '100%'
       }} >
-        <View style={{ height: '50%' }} >
-          <Text style={{ color: '#ffffff' }} >
-            Login Scene
-        </Text>
-        </View>
-
-        <View style={{ width: '70%', height: '30%' }} >
-          <TextInput
-            onChangeText={(email) => this.setState({ email })}
-            style={{ height: 50, backgroundColor: '#fff' }}
-            placeholder='Email' />
-
-          <TextInput
-            onChangeText={(password) => this.setState({ password })}
-            style={{ height: 50, backgroundColor: '#fff' }}
-            secureTextEntry={true}
-            placeholder='Senha' />
+      <StatusBar
+          barStyle="light-content"
+        />
+        <View
+          style={{
+            height: '50%',
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }} >
+          <Text
+            style={{
+              fontSize: 40,
+              fontWeight: 'bold',
+              color: '#4d4d4d'
+            }} >
+            iHero
+          </Text>
         </View>
 
         <View style={{
-          width: '50%',
-          height: '20%',
+          height: '30%',
+          width: '100%',
+          justifyContent: 'center',
           alignItems: 'center'
         }} >
-          <Button
-            disabled={this.state.email.length < 1 || this.state.password.length < 1}
-            style={{ width: 200, height: 50 }}
-            title='LOGIN'
-            onPress={() => this._login()} />
+          <View style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <View style={{ width: 300, height: 70 }}>
+              <TextInput
+                underlineColorAndroid='transparent'
+                onChangeText={(email) => this.setState({ email })}
+                style={{ height: 50, backgroundColor: '#e6e6e6' }}
+                placeholder='Email' />
+            </View>
 
-          <TouchableHighlight onPress={() => this.setState({ isRegisterScreen: true })}>
-            <Text
-              style={{ color: '#ffffff' }}
-            >
-              CREATE ACCOUNT
-          </Text>
-          </TouchableHighlight>
+            <View style={{ width: 300, height: 70 }}>
+              <TextInput
+                underlineColorAndroid='transparent'
+                onChangeText={(password) => this.setState({ password })}
+                style={{ height: 50, backgroundColor: '#e6e6e6' }}
+                secureTextEntry={true}
+                placeholder='Senha' />
+            </View>
+          </View>
         </View>
 
+        <View style={{
+          height: '20%',
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }} >
+          <View style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <View style={{ width: 150, height: 50 }}>
+              <Button
+                title='LOGIN'
+                onPress={() => this._login()} />
+            </View>
+
+            <View style={{ width: 150, height: 50, alignItems: 'center' }} >
+              <TouchableHighlight onPress={() => this.setState({ isRegisterScreen: true })}>
+                <Text style={{ color: '#4d4d4d', fontWeight: 'bold' }}>
+                  CREATE ACCOUNT
+              </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
       </View>
     )
   }

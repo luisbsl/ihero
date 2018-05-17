@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2e9aa6b45a86c501532d0e2e1c757f5e
+ * @relayHash ddcb7be9869554c565f94254ca23292f
  */
 
 /* eslint-disable */
@@ -16,6 +16,9 @@ export type HeroFlatlistScreenQueryResponse = {|
     +name: ?string,
     +description: ?string,
     +image: ?string,
+    +comics: ?number,
+    +series: ?number,
+    +stories: ?number,
   |}>
 |};
 */
@@ -28,6 +31,9 @@ query HeroFlatlistScreenQuery {
     name
     description
     image
+    comics
+    series
+    stories
   }
 }
 */
@@ -70,6 +76,27 @@ var v0 = [
         "name": "image",
         "args": null,
         "storageKey": null
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "comics",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "series",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "stories",
+        "args": null,
+        "storageKey": null
       }
     ]
   }
@@ -79,7 +106,7 @@ return {
   "operationKind": "query",
   "name": "HeroFlatlistScreenQuery",
   "id": null,
-  "text": "query HeroFlatlistScreenQuery {\n  heroes {\n    id\n    name\n    description\n    image\n  }\n}\n",
+  "text": "query HeroFlatlistScreenQuery {\n  heroes {\n    id\n    name\n    description\n    image\n    comics\n    series\n    stories\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -98,5 +125,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '71bba345d26b3d7a0fd66b7891281df0';
+(node/*: any*/).hash = '9383a2fa1a4cdfb10a9d7a3dcb8e096b';
 module.exports = node;
