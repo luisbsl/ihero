@@ -1,4 +1,5 @@
 import React from 'react'
+import StorybookUI from './storybook'
 import { AppRegistry, YellowBox } from 'react-native'
 
 import App from './App'
@@ -8,4 +9,4 @@ YellowBox.ignoreWarnings([
   'The StackNavigator function name is deprecated, please use createStackNavigator instead'
 ])
 
-AppRegistry.registerComponent('ihero', () => App)
+AppRegistry.registerComponent('ihero', () => StorybookUI)
