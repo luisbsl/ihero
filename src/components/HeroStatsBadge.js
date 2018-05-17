@@ -1,5 +1,28 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import styled from 'styled-components'
+
+const Container = styled.View`
+  flex: 1;
+  flex-direction: ${'row'};
+`
+const BadgeNumberContainer = styled.View`
+  width: 40;
+`
+const BadgeNumber = styled.Text`
+  color: ${'#fff'}; 
+  font-weight: ${'bold'}; 
+  text-align: ${'center'};
+`
+
+const BadgeTextContainer = styled.View`
+  width: 90;
+  margin-left: 3;
+`
+
+const BadgeText = styled.Text`
+  color: ${'#fff'};
+`
 
 export default class HeroStatsBadge extends React.Component {
   constructor(props) {
@@ -8,27 +31,18 @@ export default class HeroStatsBadge extends React.Component {
   render() {
     return (
       <View style={{ width: 100, height: 20, borderRadius: 2, backgroundColor: this.props.bgColor }}>
-        <View style={{ flex: 1, flexDirection: 'row' }}>
-          <View style={{ width: 40 }} >
-            <Text
-              style={{ 
-                color: '#fff', 
-                fontWeight: 'bold', 
-                textAlign: 'center' }} >
+        <Container>
+          <BadgeNumberContainer style={{ width: 40 }} >
+            <BadgeNumber>
               {this.props.statNumber}
-            </Text>
-          </View>
-          <View 
-            style={{ 
-              width: 90, 
-              marginLeft: 3 }} >
-            <Text 
-              style={{ 
-                color: '#fff' }} >
+            </BadgeNumber>
+          </BadgeNumberContainer>
+          <BadgeTextContainer>
+            <BadgeText>
               {this.props.statName}
-            </Text>
-          </View>
-        </View>
+            </BadgeText>
+          </BadgeTextContainer>
+        </Container>
       </View>
     )
   }

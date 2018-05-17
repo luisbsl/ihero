@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, TextInput, Button, TouchableHighlight } from 'react-native'
+import styled from 'styled-components'
 
 import LoginScreen from './LoginScreen'
 
@@ -7,6 +8,80 @@ import { register } from '../mutations/RegisterMutation'
 import AppNavigator from '../navigators/AppNavigator'
 
 import { setUserToken } from '../providers/StorageProvider'
+
+const Container = styled.View`
+  flex: 1;
+  flex-direction: ${'column'};
+  align-items: ${'center'};
+  width: ${'100%'};
+`
+
+const TitleContainer = styled.View`
+  height: ${'40%'};
+  width: ${'100%'};
+  justify-content: ${'center'};
+  align-items: ${'center'};
+`
+
+const Title = styled.Text`
+  font-size: ${35};
+  font-weight: ${'bold'};
+  color: ${'#4d4d4d'};
+`
+
+const FormContainerWrapper = styled.View`
+  height: ${'40%'};
+  width: ${'100%'};
+  justify-content: ${'center'};
+  align-items: ${'center'};
+`
+
+const FormContainer = styled.View`
+  flex: 1;
+  flex-direction: ${'column'};
+  justify-content: ${'center'};
+  align-items: ${'center'};
+`
+
+const InputWrapper = styled.View`
+  width: 300
+  height: 70
+`
+
+const TextInputStyled = styled.TextInput`
+  height: 50;
+  background-color: ${'#e6e6e6'};
+`
+
+const ActionsContainerWrapper = styled.View`
+  height: ${'20%'};
+  width: ${'100%'};
+  justify-content: ${'center'};
+  align-items: ${'center'};
+`
+
+const ActionsContainer = styled.View`
+  flex: 1;
+  flex-direction: ${'column'};
+  justify-content: ${'center'};
+  align-items: ${'center'};
+`
+
+const CreateButtonContainer = styled.View`
+  width: 150;
+  height: 50;
+`
+
+const LoginLinkContainer = styled.View`
+  width: 150; 
+  height: 50; 
+  align-items: ${'center'};
+`
+
+const LoginLinkText = styled.Text`
+  color: ${'#4d4d4d'};
+  font-weight: ${'bold'};
+`
 
 export default class RegisterScreen extends React.Component {
   constructor(props) {
@@ -35,92 +110,53 @@ export default class RegisterScreen extends React.Component {
   }
   _renderRegisterScreen() {
     return (
-      <View style={{
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100%'
-      }} >
-        <View
-          style={{
-            height: '40%',
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }} >
-          <Text
-            style={{
-              fontSize: 35,
-              fontWeight: 'bold',
-              color: '#4d4d4d'
-            }} >
+      <Container>
+        <TitleContainer>
+          <Title>
             Creacte your account
-          </Text>
-        </View>
+          </Title>
+        </TitleContainer>
 
-        <View style={{
-          height: '40%',
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }} >
-          <View style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}>
-            <View style={{ width: 300, height: 70 }}>
-              <TextInput
+        <FormContainerWrapper>
+          <FormContainer>
+            <InputWrapper>
+              <TextInputStyled
                 onChangeText={(name) => this.setState({ name })}
-                style={{ height: 50, backgroundColor: '#e6e6e6' }}
                 placeholder='Name' />
-            </View>
-            <View style={{ width: 300, height: 70 }}>
-              <TextInput
+            </InputWrapper>
+            <InputWrapper>
+              <TextInputStyled
                 onChangeText={(email) => this.setState({ email })}
-                style={{ height: 50, backgroundColor: '#e6e6e6' }}
                 placeholder='Email' />
-            </View>
-            <View style={{ width: 300, height: 70 }}>
-              <TextInput
+            </InputWrapper>
+            <InputWrapper>
+              <TextInputStyled
                 onChangeText={(password) => this.setState({ password })}
-                style={{ height: 50, backgroundColor: '#e6e6e6' }}
                 secureTextEntry={true}
                 placeholder='Senha' />
-            </View>
-          </View>
-        </View>
+            </InputWrapper>
+          </FormContainer>
+        </FormContainerWrapper>
 
-        <View style={{
-          height: '20%',
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }} >
-          <View style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-            <View style={{ width: 150, height: 50 }}>
+        <ActionsContainerWrapper>
+          <ActionsContainer>
+            <CreateButtonContainer>
               <Button
-                style={{ width: 200, height: 50 }}
+                disabled={this.state.name.length < 1 || this.state.email.length < 1 || this.state.password.length < 1}
                 title='CREATE'
                 onPress={() => this._register()} />
-            </View>
+            </CreateButtonContainer>
 
-            <View style={{ width: 150, height: 50, alignItems: 'center' }} >
+            <LoginLinkContainer>
               <TouchableHighlight onPress={() => this.setState({ isLoginScreen: true })}>
-                <Text style={{ color: '#4d4d4d', fontWeight: 'bold' }}>
+                <LoginLinkText>
                   LOGIN
-                </Text>
+                </LoginLinkText>
               </TouchableHighlight>
-            </View>
-          </View>
-        </View>
-      </View>
+            </LoginLinkContainer>
+          </ActionsContainer>
+        </ActionsContainerWrapper>
+      </Container>
     )
   }
   render() {

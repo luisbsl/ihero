@@ -20,9 +20,14 @@ const ImageContainer = styled.View`
   width: ${'30%'};
 `
 
-const InfoContainer = styled.View`
+const InfoWrapper = styled.View`
   flex: 1;
   height: 100px;
+`
+
+const InfoContainer = styled.View`
+  height: ${'80%'}; 
+  padding-top: ${25};
 `
 
 const StyledImage = styled.Image`
@@ -34,14 +39,13 @@ const StyledImage = styled.Image`
 `
 
 const Info = styled.Text`
-  font-weight: bold;
-  font-size: 14px;
-  margin-left: 15px;
-  margin-top: 15px;
+  color: ${'#4d4d4d'}; 
+  font-weight: ${'bold'};
 `
-
-const Subtitle = styled.Text`
-  margin-left: 15px;
+const BadgesContainer = styled.View`
+  flex: 1;
+  flex-direction: ${'row'}; 
+  margin-top: 7;
 `
 
 export default class HeroCard extends React.Component {
@@ -57,17 +61,17 @@ export default class HeroCard extends React.Component {
                 resizeMode={'cover'}
                 source={{ uri: `${this.props.hero.image}` }} />
             </ImageContainer>
-            <InfoContainer>
-              <View style={{ height: '80%', paddingTop: 25 }} >
-                <Text style={{ color: '#4d4d4d', fontWeight: 'bold' }} >{this.props.hero.name.toUpperCase()}</Text>
+            <InfoWrapper>
+              <InfoContainer>
+                <Info>{this.props.hero.name.toUpperCase()}</Info>
 
-                <View style={{ flex: 1, flexDirection: 'row', marginTop: 7 }}>
+                <BadgesContainer>
                   <HeroStatsBadge bgColor={'#0066ff'} heroStats={null} statName={'Comics'} statNumber={this.props.hero.comics} />
                   <View style={{marginRight: 5}} />
                   <HeroStatsBadge bgColor={'#00cc00'} heroStats={null} statName={'Series'} statNumber={this.props.hero.series} />
-                </View>
-              </View>
-            </InfoContainer>
+                </BadgesContainer>
+              </InfoContainer>
+            </InfoWrapper>
           </Container>
         </TouchableHighlight>
         : null

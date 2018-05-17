@@ -1,58 +1,75 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
+import styled from 'styled-components'
+
+const Container = styled.View`
+  flex: 1;
+  flex-direction: ${'column'};
+  align-items: ${'center'};
+  width: ${'100%'};
+`
+
+const TitleContainer = styled.View`
+  height: ${'10%'};
+  width: ${'100%'};
+  justify-content: ${'center'};
+  align-items: ${'center'};
+`
+
+const Title = styled.Text`
+  font-size: 20;
+  font-weight: ${'bold'};
+  color: ${'#4d4d4d'};
+`
+
+const ImageContainer = styled.View`
+  height: ${'40%'};
+  width: ${'100%'};
+  justify-content: ${'center'};
+  align-items: ${'center'};
+`
+
+const ImageStyled = styled.Image`
+  width: 200;
+  height: 200;
+  border-radius: 100;
+`
+
+const DescriptionContainer = styled.View`
+  height: ${'50%'};
+  width: ${'80%'};
+  justify-content: ${'center'};
+  align-items: ${'center'};
+`
+
+const Description = styled.Text`
+  color: ${'#4d4d4d'};
+  font-size: 16;
+`
 
 class HeroDetailScreen extends React.Component {
   render() {
     const { hero } = this.props.navigation.state.params
     return (
-      <View style={{
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100%'
-      }} >
-        <View
-          style={{
-            height: '10%',
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }} >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: 'bold',
-              color: '#4d4d4d'
-            }} >
+      <Container>
+        <TitleContainer>
+          <Title>
             {hero.name}
-          </Text>
-        </View>
+          </Title>
+        </TitleContainer>
 
-        <View
-          style={{
-            height: '40%',
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }} >
-          <Image
+        <ImageContainer>
+          <ImageStyled
             resizeMode={'cover'}
-            style={{ width: 200, height: 200, borderRadius: 100 }}
             source={{ uri: `${hero.image}` }} />
-        </View>
+        </ImageContainer>
 
-        <View
-          style={{
-            height: '50%',
-            width: '80%',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }} >
-          <Text style={{ color: '#4d4d4d', fontSize: 16 }} >
+        <DescriptionContainer>
+          <Description>
             {hero.description? hero.description: 'No Description available'}
-          </Text>
-        </View>
-      </View>
+          </Description>
+        </DescriptionContainer>
+      </Container>
     )
   }
 }
