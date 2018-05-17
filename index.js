@@ -9,4 +9,4 @@ YellowBox.ignoreWarnings([
   'The StackNavigator function name is deprecated, please use createStackNavigator instead'
 ])
 
-AppRegistry.registerComponent('ihero', () => StorybookUI)
+AppRegistry.registerComponent('ihero', () => App)

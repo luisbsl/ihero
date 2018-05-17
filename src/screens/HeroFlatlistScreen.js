@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, FlatList, TouchableHighlight, Image, ActivityIndicator, StatusBar } from 'react-native'
-import { fetchQuery, QueryRenderer } from 'react-relay'
+import { fetchQuery } from 'react-relay'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -8,11 +8,8 @@ import environment from '../../scripts/create-environment'
 import { getUserToken, removeUserToken } from '../providers/StorageProvider'
 
 import LogoutImage from '../assets/img/logout.png'
-
 import { executeLogout } from '../actions/AuthActions'
-import { MeQuery } from '../mutations/AuthMutation'
-
-import HeroCard from '../components/HeroCard'
+import HeroFlatlist from '../components/HeroFlatlist'
 
 const HeroFlatlistScreenQuery = graphql`
   query HeroFlatlistScreenQuery {
@@ -89,17 +86,7 @@ class HeroFlatlistScreen extends React.Component {
         {
           this.state.heroes.length > 0
             ?
-            <FlatList
-              style={{ marginTop: 10 }}
-              data={this.state.heroes}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={
-                ({ item }) =>
-                  <HeroCard
-                    hero={item}
-                    navigation={this.props.navigation} />
-              }
-            />
+            <HeroFlatlist heroes={this.state.heroes} navigation={this.props.navigation} />
 
             : <View style={{
               flex: 1,

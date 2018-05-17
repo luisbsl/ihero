@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Image, Text, Dimensions, TouchableHighlight } from 'react-native'
 import styled from 'styled-components'
-import { createFragmentContainer } from 'react-relay'
 
 import HeroStatsBadge from './HeroStatsBadge'
 
