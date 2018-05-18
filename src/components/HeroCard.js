@@ -1,4 +1,5 @@
 import React from 'react'
+import { createFragmentContainer } from 'react-relay'
 import { View, Image, Text, Dimensions, TouchableHighlight } from 'react-native'
 import styled from 'styled-components'
 
@@ -47,7 +48,7 @@ const BadgesContainer = styled.View`
   margin-top: 7;
 `
 
-export default class HeroCard extends React.Component {
+class HeroCard extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -78,3 +79,15 @@ export default class HeroCard extends React.Component {
     )
   }
 }
+
+export default createFragmentContainer(HeroCard, graphql`
+  fragment HeroCard_hero on Hero { 
+    id
+    name
+    description
+    image
+    comics
+    series
+    stories
+  }
+`)

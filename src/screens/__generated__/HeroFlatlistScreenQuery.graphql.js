@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ddcb7be9869554c565f94254ca23292f
+ * @relayHash f0e3f860f7202c65c47fa64b60b3a218
  */
 
 /* eslint-disable */
@@ -9,96 +9,50 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type HeroCard_hero$ref = any;
 export type HeroFlatlistScreenQueryVariables = {||};
 export type HeroFlatlistScreenQueryResponse = {|
-  +heroes: ?$ReadOnlyArray<?{|
-    +id: ?string,
-    +name: ?string,
-    +description: ?string,
-    +image: ?string,
-    +comics: ?number,
-    +series: ?number,
-    +stories: ?number,
-  |}>
+  +heroes: ?{|
+    +edges: ?$ReadOnlyArray<?{|
+      +node: ?{|
+        +$fragmentRefs: HeroCard_hero$ref
+      |}
+    |}>
+  |}
 |};
 */
 
 
 /*
 query HeroFlatlistScreenQuery {
-  heroes {
-    id
-    name
-    description
-    image
-    comics
-    series
-    stories
+  heroes(first: 10) {
+    edges {
+      node {
+        ...HeroCard_hero
+        id
+      }
+    }
   }
+}
+
+fragment HeroCard_hero on Hero {
+  id
+  name
+  description
+  image
+  comics
+  series
+  stories
 }
 */
 
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "heroes",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "Hero",
-    "plural": true,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "id",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "name",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "description",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "image",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "comics",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "series",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "stories",
-        "args": null,
-        "storageKey": null
-      }
-    ]
+    "kind": "Literal",
+    "name": "first",
+    "value": 10,
+    "type": "Int"
   }
 ];
 return {
@@ -106,7 +60,7 @@ return {
   "operationKind": "query",
   "name": "HeroFlatlistScreenQuery",
   "id": null,
-  "text": "query HeroFlatlistScreenQuery {\n  heroes {\n    id\n    name\n    description\n    image\n    comics\n    series\n    stories\n  }\n}\n",
+  "text": "query HeroFlatlistScreenQuery {\n  heroes(first: 10) {\n    edges {\n      node {\n        ...HeroCard_hero\n        id\n      }\n    }\n  }\n}\n\nfragment HeroCard_hero on Hero {\n  id\n  name\n  description\n  image\n  comics\n  series\n  stories\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -114,16 +68,138 @@ return {
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
-    "selections": v0
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "heroes",
+        "storageKey": "heroes(first:10)",
+        "args": v0,
+        "concreteType": "HeroConnection",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "edges",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "HeroEdge",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "node",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Hero",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "FragmentSpread",
+                    "name": "HeroCard_hero",
+                    "args": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "HeroFlatlistScreenQuery",
     "argumentDefinitions": [],
-    "selections": v0
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "heroes",
+        "storageKey": "heroes(first:10)",
+        "args": v0,
+        "concreteType": "HeroConnection",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "edges",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "HeroEdge",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "node",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Hero",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "id",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "name",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "description",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "image",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "comics",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "series",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "stories",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '9383a2fa1a4cdfb10a9d7a3dcb8e096b';
+(node/*: any*/).hash = '41dfd06e1e770a21a011193016b9f0cb';
 module.exports = node;

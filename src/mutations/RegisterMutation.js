@@ -22,7 +22,7 @@ export const register = (name, email, password, callback) => {
   }
 
   commitMutation(
-    environment(null),
+    environment(),
     {
       mutation,
       variables,

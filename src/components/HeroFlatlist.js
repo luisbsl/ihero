@@ -9,12 +9,12 @@ export default class HeroFlatlist extends React.Component {
     return (
       <FlatList
         style={{ marginTop: 10 }}
-        data={heroes}
+        data={heroes.edges}
         keyExtractor={(item, index) => index.toString()}
         renderItem={
           ({ item }) =>
             <HeroCard
-              hero={item}
+              hero={item.node}
               navigation={navigation} />
         }
       />

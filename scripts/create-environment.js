@@ -1,6 +1,7 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime'
 
 const env = (token) => {
+  token = token || ''
   function fetchQuery(
     operation,
     variables,

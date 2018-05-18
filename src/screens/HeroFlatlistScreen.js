@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, FlatList, TouchableHighlight, Image, ActivityIndicator, StatusBar } from 'react-native'
-import { fetchQuery } from 'react-relay'
+import { fetchQuery, QueryRenderer } from 'react-relay'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -11,18 +11,18 @@ import LogoutImage from '../assets/img/logout.png'
 import { executeLogout } from '../actions/AuthActions'
 import HeroFlatlist from '../components/HeroFlatlist'
 
+import createQueryRender from '../components/createQueryRender'
+
 const HeroFlatlistScreenQuery = graphql`
-  query HeroFlatlistScreenQuery {
-    heroes {
-      id
-      name
-    	description
-      image
-      comics
-      series
-      stories
+query HeroFlatlistScreenQuery {
+  heroes(first: 10) {
+    edges {
+      node {
+        ...HeroCard_hero
+      }
     }
-  }`
+  }
+}`
 
 class HeroFlatlistScreen extends React.Component {
   constructor(props) {
@@ -57,25 +57,6 @@ class HeroFlatlistScreen extends React.Component {
     })
   }
 
-  async componentDidMount() {
-    const _heroes = await this._getEnviroment().then(_env => {
-      return fetchQuery(_env, HeroFlatlistScreenQuery)
-        .then(data => {
-          return data.heroes
-        })
-        .catch(error => {
-          alert(error)
-        })
-    })
-    this.setState({ heroes: _heroes })
-  }
-
-  async _getEnviroment() {
-    return await getUserToken().then(token => {
-      return environment(token)
-    })
-  }
-
   render() {
     return (
       <View>
@@ -83,18 +64,21 @@ class HeroFlatlistScreen extends React.Component {
           backgroundColor='#4d4d4d'
           barStyle="light-content"
         />
-        {
-          this.state.heroes.length > 0
-            ?
-            <HeroFlatlist heroes={this.state.heroes} navigation={this.props.navigation} />
-
-            : <View style={{
-              flex: 1,
-              justifyContent: 'center'
-            }} >
-              <ActivityIndicator size="large" color="#0000ff" />
-            </View>
-        }
+        <QueryRenderer
+          environment={environment()}
+          query={HeroFlatlistScreenQuery}
+          render={({ error, props }) => {
+            if (error) {
+              return <Text>{error.message}</Text>
+            } else if (props) {
+              return (
+                <HeroFlatlist heroes={props.heroes} navigation={this.props.navigation} />
+              )
+            } else {
+              return <ActivityIndicator size="large" color="#0000ff" />
+            }
+          }}
+        />
       </View>
     )
   }

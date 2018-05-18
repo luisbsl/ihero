@@ -12,15 +12,34 @@ type ChangePasswordPayload {
   clientMutationId: String
 }
 
-"""Hero data"""
-type Hero {
-  id: String
+"""Attributes of hero"""
+type Hero implements Node {
+  """The ID of an object"""
+  id: ID!
   name: String
   description: String
   image: String
   comics: Int
   series: Int
   stories: Int
+}
+
+"""A connection to a list of items."""
+type HeroConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [HeroEdge]
+}
+
+"""An edge in a connection."""
+type HeroEdge {
+  """The item at the end of the edge"""
+  node: Hero
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 input LoginEmailInput {
@@ -69,7 +88,7 @@ type Query {
     """The ID of an object"""
     id: ID!
   ): Node
-  heroes: [Hero]
+  heroes(after: String, first: Int, before: String, last: Int): HeroConnection
   hero(id: ID!): Hero
   me: User
   user(id: ID!): User
