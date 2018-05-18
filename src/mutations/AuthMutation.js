@@ -18,7 +18,7 @@ export const authenticate = (email, password, callback) => {
   }
 
   commitMutation(
-    environment(null),
+    environment(),
     {
       mutation,
       variables,
