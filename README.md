@@ -34,9 +34,7 @@ Yout can get this server here <a  href="https://github.com/luisbsl/ihero-server"
 
 <img  height="350"  src="https://image.ibb.co/gGi3Qd/Screenshot_from_2018_05_17_00_50_30.png"  alt="iHero - Hero Detail Screen">
 
-  
 
-<img  height="350"  src="https://image.ibb.co/gGi3Qd/Screenshot_from_2018_05_17_00_50_30.png"  alt="iHero - Hero Detail Screen">
  </p>
 
   
