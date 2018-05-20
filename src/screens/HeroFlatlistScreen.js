@@ -12,14 +12,14 @@ import { executeLogout } from '../actions/AuthActions'
 import HeroFlatlist from '../components/HeroFlatlist'
 
 const HeroFlatlistScreenQuery = graphql`
-query HeroFlatlistScreenQuery {
-  heroes(first: 10) {
-    edges {
-      node {
-        ...HeroCard_hero
+  query HeroFlatlistScreenQuery {
+    heroes(first: 10) {
+      edges {
+        node {
+          ...HeroCard_hero
+        }
       }
     }
-  }
 }`
 
 class HeroFlatlistScreen extends React.Component {
@@ -54,7 +54,6 @@ class HeroFlatlistScreen extends React.Component {
       handleLogout: this.props.executeLogout
     })
   }
-
   render() {
     return (
       <View>
@@ -62,21 +61,7 @@ class HeroFlatlistScreen extends React.Component {
           backgroundColor='#4d4d4d'
           barStyle="light-content"
         />
-        <QueryRenderer
-          environment={environment()}
-          query={HeroFlatlistScreenQuery}
-          render={({ error, props }) => {
-            if (error) {
-              return <Text>{error.message}</Text>
-            } else if (props) {
-              return (
-                <HeroFlatlist heroes={props.heroes} navigation={this.props.navigation} />
-              )
-            } else {
-              return <ActivityIndicator size="large" color="#0000ff" />
-            }
-          }}
-        />
+        <HeroFlatlist query={HeroFlatlistScreenQuery} navigation={this.props.navigation} />
       </View>
     )
   }
