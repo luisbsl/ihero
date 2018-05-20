@@ -11,76 +11,76 @@ import { setUserToken } from '../providers/StorageProvider'
 
 const Container = styled.View`
   flex: 1;
-  flex-direction: ${'column'};
-  align-items: ${'center'};
-  width: ${'100%'};
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 `
 
 const TitleContainer = styled.View`
-  height: ${'40%'};
-  width: ${'100%'};
-  justify-content: ${'center'};
-  align-items: ${'center'};
+  height: 40%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `
 
 const Title = styled.Text`
-  font-size: ${35};
-  font-weight: ${'bold'};
-  color: ${'#4d4d4d'};
+  font-size: 35px;
+  font-weight: bold;
+  color: #4d4d4d;
 `
 
 const FormContainerWrapper = styled.View`
-  height: ${'40%'};
-  width: ${'100%'};
-  justify-content: ${'center'};
-  align-items: ${'center'};
+  height: 40%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `
 
 const FormContainer = styled.View`
   flex: 1;
-  flex-direction: ${'column'};
-  justify-content: ${'center'};
-  align-items: ${'center'};
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 const InputWrapper = styled.View`
-  width: 300
-  height: 70
+  width: 300px;
+  height: 70px;
 `
 
 const TextInputStyled = styled.TextInput`
-  height: 50;
-  background-color: ${'#e6e6e6'};
+  height: 50px;
+  background-color: #e6e6e6;
 `
 
 const ActionsContainerWrapper = styled.View`
-  height: ${'20%'};
-  width: ${'100%'};
-  justify-content: ${'center'};
-  align-items: ${'center'};
+  height: 20%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `
 
 const ActionsContainer = styled.View`
   flex: 1;
-  flex-direction: ${'column'};
-  justify-content: ${'center'};
-  align-items: ${'center'};
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 const CreateButtonContainer = styled.View`
-  width: 150;
-  height: 50;
+  width: 150px;
+  height: 50px;
 `
 
 const LoginLinkContainer = styled.View`
-  width: 150; 
-  height: 50; 
-  align-items: ${'center'};
+  width: 150px; 
+  height: 50px; 
+  align-items: center;
 `
 
 const LoginLinkText = styled.Text`
-  color: ${'#4d4d4d'};
-  font-weight: ${'bold'};
+  color: #4d4d4d;
+  font-weight: bold;
 `
 
 export default class RegisterScreen extends React.Component {
