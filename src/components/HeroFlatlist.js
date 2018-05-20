@@ -1,15 +1,17 @@
 import React from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, Text } from 'react-native'
 
 import HeroCard from './HeroCard'
 
-export default class HeroFlatlist extends React.Component {
+import createQueryRenderer from './createQueryRenderer'
+
+class HeroFlatlist extends React.Component {
   render() {
-    const { heroes, navigation } = this.props
+    const { data, navigation } = this.props
     return (
       <FlatList
         style={{ marginTop: 10 }}
-        data={heroes.edges}
+        data={data.heroes.edges}
         keyExtractor={(item, index) => index.toString()}
         renderItem={
           ({ item }) =>
@@ -21,3 +23,5 @@ export default class HeroFlatlist extends React.Component {
     )
   }
 }
+
+export default createQueryRenderer(HeroFlatlist)
