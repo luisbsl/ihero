@@ -2,26 +2,33 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import styled from 'styled-components'
 
+const ContainerWrapper = styled.View`
+  width: 100px;
+  height: 20px; 
+  border-radius: 2px;
+  background-color: ${props => props.bgColor};
+`
+
 const Container = styled.View`
   flex: 1;
-  flex-direction: ${'row'};
+  flex-direction: row;
 `
 const BadgeNumberContainer = styled.View`
-  width: 40;
+  width: 40px;
 `
 const BadgeNumber = styled.Text`
-  color: ${'#fff'}; 
-  font-weight: ${'bold'}; 
-  text-align: ${'center'};
+  color: #ffffff; 
+  font-weight: bold; 
+  text-align: center;
 `
 
 const BadgeTextContainer = styled.View`
-  width: 90;
-  margin-left: 3;
+  width: 90px;
+  margin-left: 3px;
 `
 
 const BadgeText = styled.Text`
-  color: ${'#fff'};
+  color: #ffffff;
 `
 
 export default class HeroStatsBadge extends React.Component {
@@ -30,9 +37,9 @@ export default class HeroStatsBadge extends React.Component {
   }
   render() {
     return (
-      <View style={{ width: 100, height: 20, borderRadius: 2, backgroundColor: this.props.bgColor }}>
+      <ContainerWrapper {...this.props} >
         <Container>
-          <BadgeNumberContainer style={{ width: 40 }} >
+          <BadgeNumberContainer>
             <BadgeNumber>
               {this.props.statNumber}
             </BadgeNumber>
@@ -43,7 +50,7 @@ export default class HeroStatsBadge extends React.Component {
             </BadgeText>
           </BadgeTextContainer>
         </Container>
-      </View>
+      </ContainerWrapper>
     )
   }
 }

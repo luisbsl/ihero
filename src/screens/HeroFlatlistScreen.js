@@ -11,8 +11,6 @@ import LogoutImage from '../assets/img/logout.png'
 import { executeLogout } from '../actions/AuthActions'
 import HeroFlatlist from '../components/HeroFlatlist'
 
-import createQueryRender from '../components/createQueryRender'
-
 const HeroFlatlistScreenQuery = graphql`
 query HeroFlatlistScreenQuery {
   heroes(first: 10) {

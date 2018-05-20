@@ -16,7 +16,7 @@ import LogoutImage from '../assets/img/logout.png'
 
 const Container = styled.View`
   flex: 1;
-  justify-content: ${'center'};
+  justify-content: center;
 `
 
 class AppNavigator extends React.Component {

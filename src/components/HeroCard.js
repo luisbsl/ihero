@@ -6,18 +6,18 @@ import styled from 'styled-components'
 import HeroStatsBadge from './HeroStatsBadge'
 
 const Container = styled.View`
-  flex-direction: ${'row'};
+  flex-direction: row;
   margin-bottom: 10px;
-  border-color: ${'#bfbfbf'};
+  border-color: #bfbfbf;
   border-width: 2px;
-  align-items: ${'center'};
+  align-items: center;
   width: ${(Dimensions.get('window').width - 10)}px;
-  background-color: ${'#e6e6e6'};
+  background-color: #e6e6e6;
 `
 
 const ImageContainer = styled.View`
-  align-items: ${'center'};
-  width: ${'30%'};
+  align-items: center;
+  width: 30%;
 `
 
 const InfoWrapper = styled.View`
@@ -26,26 +26,26 @@ const InfoWrapper = styled.View`
 `
 
 const InfoContainer = styled.View`
-  height: ${'80%'}; 
-  padding-top: ${25};
+  height: 80%; 
+  padding-top: 25px;
 `
 
 const StyledImage = styled.Image`
   margin-bottom: 10px;
-  margin-top: 10;
+  margin-top: 10px;
   width: 90px;
   height: 90px;
   border-radius: 100;
 `
 
 const Info = styled.Text`
-  color: ${'#4d4d4d'}; 
-  font-weight: ${'bold'};
+  color: #4d4d4d; 
+  font-weight: bold;
 `
 const BadgesContainer = styled.View`
   flex: 1;
-  flex-direction: ${'row'}; 
-  margin-top: 7;
+  flex-direction: row; 
+  margin-top: 7px;
 `
 
 class HeroCard extends React.Component {
@@ -66,9 +66,9 @@ class HeroCard extends React.Component {
                 <Info>{this.props.hero.name.toUpperCase()}</Info>
 
                 <BadgesContainer>
-                  <HeroStatsBadge bgColor={'#0066ff'} heroStats={null} statName={'Comics'} statNumber={this.props.hero.comics} />
+                  <HeroStatsBadge bgColor={'#0066ff'} statName={'Comics'} statNumber={this.props.hero.comics} />
                   <View style={{marginRight: 5}} />
-                  <HeroStatsBadge bgColor={'#00cc00'} heroStats={null} statName={'Series'} statNumber={this.props.hero.series} />
+                  <HeroStatsBadge bgColor={'#00cc00'} statName={'Series'} statNumber={this.props.hero.series} />
                 </BadgesContainer>
               </InfoContainer>
             </InfoWrapper>
