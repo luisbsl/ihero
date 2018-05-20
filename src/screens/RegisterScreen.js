@@ -113,7 +113,7 @@ export default class RegisterScreen extends React.Component {
       <Container>
         <TitleContainer>
           <Title>
-            Creacte your account
+            Create your account
           </Title>
         </TitleContainer>
 
