@@ -113,7 +113,7 @@ export default class RegisterScreen extends React.Component {
       <Container>
         <TitleContainer>
           <Title>
-            Creacte your account
+            Create your account
           </Title>
         </TitleContainer>
 
@@ -133,7 +133,7 @@ export default class RegisterScreen extends React.Component {
               <TextInputStyled
                 onChangeText={(password) => this.setState({ password })}
                 secureTextEntry={true}
-                placeholder='Senha' />
+                placeholder='Password' />
             </InputWrapper>
           </FormContainer>
         </FormContainerWrapper>

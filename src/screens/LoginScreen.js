@@ -136,7 +136,7 @@ class LoginScreen extends React.Component {
                 underlineColorAndroid='transparent'
                 onChangeText={(password) => this.setState({ password })}
                 secureTextEntry={true}
-                placeholder='Senha' />
+                placeholder='Password' />
             </InputWrapper>
           </FormContainer>
         </FormContainerWrapper>
