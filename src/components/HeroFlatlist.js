@@ -1,11 +1,9 @@
 import React from 'react'
 import { FlatList, Text } from 'react-native'
 
-import HeroCard from './HeroCard'
+import HeroCard from './HeroCard.relay'
 
-import createQueryRenderer from './createQueryRenderer'
-
-class HeroFlatlist extends React.Component {
+export default class HeroFlatlist extends React.Component {
   render() {
     const { data, navigation } = this.props
     return (
@@ -24,4 +22,3 @@ class HeroFlatlist extends React.Component {
   }
 }
 
-export default createQueryRenderer(HeroFlatlist)

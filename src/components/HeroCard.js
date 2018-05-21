@@ -48,7 +48,7 @@ const BadgesContainer = styled.View`
   margin-top: 7px;
 `
 
-class HeroCard extends React.Component {
+export default class HeroCard extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -67,7 +67,7 @@ class HeroCard extends React.Component {
 
                 <BadgesContainer>
                   <HeroStatsBadge bgColor={'#0066ff'} statName={'Comics'} statNumber={this.props.hero.comics} />
-                  <View style={{marginRight: 5}} />
+                  <View style={{ marginRight: 5 }} />
                   <HeroStatsBadge bgColor={'#00cc00'} statName={'Series'} statNumber={this.props.hero.series} />
                 </BadgesContainer>
               </InfoContainer>
@@ -79,15 +79,3 @@ class HeroCard extends React.Component {
     )
   }
 }
-
-export default createFragmentContainer(HeroCard, graphql`
-  fragment HeroCard_hero on Hero { 
-    id
-    name
-    description
-    image
-    comics
-    series
-    stories
-  }
-`)
