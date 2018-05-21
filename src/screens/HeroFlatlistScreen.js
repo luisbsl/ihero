@@ -9,7 +9,7 @@ import { getUserToken, removeUserToken } from '../providers/StorageProvider'
 
 import LogoutImage from '../assets/img/logout.png'
 import { executeLogout } from '../actions/AuthActions'
-import HeroFlatlist from '../components/HeroFlatlist'
+import HeroFlatlist from '../components/HeroFlatlist.relay'
 
 const HeroFlatlistScreenQuery = graphql`
   query HeroFlatlistScreenQuery {

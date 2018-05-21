@@ -5,16 +5,16 @@
 // https://github.com/elderfo/react-native-storybook-loader.git
 
 function loadStories() {
-  require('../src/components/HeroCard.stories');
-  require('../src/components/HeroDetail.stories');
-  require('../src/components/HeroFlatlist.stories');
+  require('../src/components/stories/HeroCard.stories');
+  require('../src/components/stories/HeroDetail.stories');
+  require('../src/components/stories/HeroFlatlist.stories');
   
 }
 
 const stories = [
-  '../src/components/HeroCard.stories',
-  '../src/components/HeroDetail.stories',
-  '../src/components/HeroFlatlist.stories',
+  '../src/components/stories/HeroCard.stories',
+  '../src/components/stories/HeroDetail.stories',
+  '../src/components/stories/HeroFlatlist.stories',
   
 ];
 

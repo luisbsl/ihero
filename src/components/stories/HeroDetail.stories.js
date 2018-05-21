@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 
-import HeroDetail from './HeroDetail'
+import HeroDetail from '../HeroDetail'
 
 const withData = storiesOf('Hero Detail', module)
   .add('With data', () => {
