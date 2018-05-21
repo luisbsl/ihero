@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Button, TextInput, TouchableHighlight, StatusBar } from 'react-native'
+import { View, Text, Button, TextInput, TouchableHighlight, StatusBar, Alert } from 'react-native'
 import FontAwesome, { Icons } from 'react-native-fontawesome'
 import styled from 'styled-components'
 
@@ -95,11 +95,22 @@ class LoginScreen extends React.Component {
     }
   }
 
+  _resetForm() {
+    this.setState({ email: '', password: '' })
+  }
+
   async _login() {
     try {
       await authenticate(this.state.email, this.state.password, (res) => {
         if (res === null) {
-          alert('Email or passwords invalids!')
+          Alert.alert(
+            'Error',
+            'Email or passwords invalids',
+            [
+              { text: 'OK', onPress: () => this._resetForm() }
+            ],
+            { cancelable: false }
+          )
         } else {
           setUserToken(res)
           this.setState({ isLoggedIn: true })
@@ -128,6 +139,7 @@ class LoginScreen extends React.Component {
               <TextInputStyled
                 underlineColorAndroid='transparent'
                 onChangeText={(email) => this.setState({ email })}
+                value={this.state.email}
                 placeholder='Email' />
             </InputWrapper>
 
@@ -135,6 +147,7 @@ class LoginScreen extends React.Component {
               <TextInputStyled
                 underlineColorAndroid='transparent'
                 onChangeText={(password) => this.setState({ password })}
+                value={this.state.password}
                 secureTextEntry={true}
                 placeholder='Password' />
             </InputWrapper>

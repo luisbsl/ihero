@@ -61,7 +61,7 @@ class HeroFlatlistScreen extends React.Component {
           backgroundColor='#4d4d4d'
           barStyle="light-content"
         />
-        <HeroFlatlist query={HeroFlatlistScreenQuery} navigation={this.props.navigation} />
+        <HeroFlatlist isRelay={true} query={HeroFlatlistScreenQuery} navigation={this.props.navigation} />
       </View>
     )
   }
