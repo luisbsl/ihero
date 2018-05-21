@@ -45,7 +45,7 @@ const withData = storiesOf('Hero Flatlist', module)
     const navigation = {
       navigate: {}
     }
-    return <HeroFlatlist data={data} navigation={navigation} />
+    return <HeroFlatlist isRelay={false} data={data} navigation={navigation} />
   });
 
 export {
