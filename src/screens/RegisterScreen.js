@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import { View, Text, TextInput, Button, TouchableHighlight } from 'react-native'
 import styled from 'styled-components'
@@ -83,17 +85,24 @@ const LoginLinkText = styled.Text`
   font-weight: bold;
 `
 
-export default class RegisterScreen extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      name: '',
-      email: '',
-      password: '',
-      isLoggedIn: false,
-      isLoginScreen: false
-    }
+type Props = {}
+type State = {
+  name: string,
+  email: string,
+  password: string,
+  isLoggedIn: boolean,
+  isLoginScreen: boolean
+}
+
+export default class RegisterScreen extends React.Component<Props, State> {
+  state = {
+    name: '',
+    email: '',
+    password: '',
+    isLoggedIn: false,
+    isLoginScreen: false
   }
+
   async _register() {
     try {
       await register(this.state.name, this.state.email, this.state.password, (res) => {

@@ -1,6 +1,8 @@
+// @flow
+
 import React from 'react'
 import { View, Text, FlatList, TouchableHighlight, Image, ActivityIndicator, StatusBar } from 'react-native'
-import { fetchQuery, QueryRenderer } from 'react-relay'
+import { QueryRenderer, graphql } from 'react-relay'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -22,15 +24,13 @@ const HeroFlatlistScreenQuery = graphql`
     }
 }`
 
-class HeroFlatlistScreen extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      heroes: []
-    }
-  }
+type Props = {
+  navigation: Object,
+  executeLogout: Function
+}
 
-  static navigationOptions = ({ navigation }) => {
+class HeroFlatlistScreen extends React.Component<Props> {
+  static navigationOptions = ({ navigation }: any) => {
     return {
       title: 'iHero',
       headerTintColor: '#4d4d4d',
@@ -54,6 +54,7 @@ class HeroFlatlistScreen extends React.Component {
       handleLogout: this.props.executeLogout
     })
   }
+
   render() {
     return (
       <View>
@@ -67,5 +68,5 @@ class HeroFlatlistScreen extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ executeLogout }, dispatch)
+const mapDispatchToProps = (dispatch: any) => bindActionCreators({ executeLogout }, dispatch)
 export default connect(null, mapDispatchToProps)(HeroFlatlistScreen)

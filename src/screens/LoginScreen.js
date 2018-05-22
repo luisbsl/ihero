@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import { View, Text, Button, TextInput, TouchableHighlight, StatusBar, Alert } from 'react-native'
 import FontAwesome, { Icons } from 'react-native-fontawesome'
@@ -5,8 +7,6 @@ import styled from 'styled-components'
 
 import { authenticate } from '../mutations/AuthMutation'
 import { setUserToken } from '../providers/StorageProvider'
-
-import { goRegisterScreen } from '../actions/AuthActions'
 
 import AppNavigator from '../navigators/AppNavigator'
 import RegisterScreen from './RegisterScreen'
@@ -85,14 +85,20 @@ const CreateAccountLinkText = styled.Text`
   font-weight: bold;
 `
 
-class LoginScreen extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoggedIn: false,
-      email: '',
-      password: ''
-    }
+type Props = {}
+type State = {
+  email: string,
+  password: string,
+  isLoggedIn: boolean,
+  isRegisterScreen: boolean
+}
+
+class LoginScreen extends React.Component<Props, State> {
+  state = {
+    email: '',
+    password: '',
+    isLoggedIn: false,
+    isRegisterScreen: false
   }
 
   _resetForm() {

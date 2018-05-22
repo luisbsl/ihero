@@ -1,6 +1,10 @@
+// @flow
+
 import React from 'react'
 import { View, Text, Image } from 'react-native'
 import styled from 'styled-components'
+
+import type { HeroType } from '../types/HeroType';
 
 const Container = styled.View`
   flex: 1;
@@ -47,7 +51,11 @@ const Description = styled.Text`
   font-size: 16px;
 `
 
-class HeroDetail extends React.Component {
+type Props = {
+  hero: HeroType
+}
+
+class HeroDetail extends React.Component<Props> {
   render() {
     const { hero } = this.props
     return (
@@ -66,7 +74,7 @@ class HeroDetail extends React.Component {
 
         <DescriptionContainer>
           <Description>
-            {hero.description? hero.description: 'No Description available'}
+            {hero.description ? hero.description : 'No Description available'}
           </Description>
         </DescriptionContainer>
       </Container>

@@ -1,8 +1,10 @@
+// @flow
+
 import ACTIONS_TYPE from '../actions/AuthActionsType'
 
 const INITIAL_STATE = { isLoggedIn: false, isLoading: true }
 
-export default (state = INITIAL_STATE, action) => {
+export default (state: Object = INITIAL_STATE, action: Object) => {
   switch (action.type) {
     case ACTIONS_TYPE.EXECUTE_LOGIN:
       return { ...state, isLoggedIn: true }

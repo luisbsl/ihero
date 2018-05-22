@@ -1,16 +1,26 @@
+// @flow
+
 import React from 'react'
 import { FlatList, Text } from 'react-native'
 
 import HeroCardRelay from './HeroCard.relay'
 import HeroCard from './HeroCard'
+import type { HeroType } from '../types/HeroType';
 
-export default class HeroFlatlist extends React.Component {
+type Props = {
+  data: Object,
+  navigation: Object,
+  isRelay: boolean
+}
+
+export default class HeroFlatlist extends React.Component<Props> {
   render() {
-    const { data, navigation, isRelay } = this.props
+    const { navigation, isRelay } = this.props
+    const { edges } = this.props.data.heroes
     return (
       <FlatList
         style={{ marginTop: 10 }}
-        data={data.heroes.edges}
+        data={edges}
         keyExtractor={(item, index) => index.toString()}
         renderItem={
           ({ item }) => {

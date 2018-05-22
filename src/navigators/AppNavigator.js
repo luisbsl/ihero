@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import { createNavigator, StackNavigator } from 'react-navigation'
 import { View, Text, TouchableHighlight, Image, ActivityIndicator } from 'react-native'
@@ -19,7 +21,13 @@ const Container = styled.View`
   justify-content: center;
 `
 
-class AppNavigator extends React.Component {
+type Props = {
+  isLoggedIn: boolean,
+  isLoading: boolean,
+  verifyLoggedIn: Function
+}
+
+class AppNavigator extends React.Component<Props> {
   async componentDidMount() {
     await this.props.verifyLoggedIn()
   }
@@ -56,5 +64,5 @@ class AppNavigator extends React.Component {
 }
 
 const mapStateToProps = state => ({ isLoggedIn: state.auth.isLoggedIn, isLoading: state.auth.isLoading })
-const mapDispatchToProps = dispatch => bindActionCreators({ verifyLoggedIn }, dispatch)
+const mapDispatchToProps = (dispatch: any) => bindActionCreators({ verifyLoggedIn }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(AppNavigator)

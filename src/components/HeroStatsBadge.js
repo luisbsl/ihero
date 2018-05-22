@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import { View, Text } from 'react-native'
 import styled from 'styled-components'
@@ -30,11 +32,12 @@ const BadgeTextContainer = styled.View`
 const BadgeText = styled.Text`
   color: #ffffff;
 `
+type Props = {
+  statNumber: number,
+  statName: string
+}
 
-export default class HeroStatsBadge extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+export default class HeroStatsBadge extends React.Component<Props> {
   render() {
     return (
       <ContainerWrapper {...this.props} >
