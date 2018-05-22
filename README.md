@@ -50,6 +50,8 @@ Yout can get this server here <a  href="https://github.com/luisbsl/ihero-server"
 
 - Redux
 
+- Flow
+
 - Styled Components
 
 - Storybook
@@ -76,7 +78,9 @@ Then execute:
     
     yarn android
 
-  
+## Flow
+
+    yarn flow
 
 ## Storybook
 
