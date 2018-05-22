@@ -1,6 +1,7 @@
 {
   "presets": [
-    "babel-preset-react-native-stage-0/decorator-support"
+    "babel-preset-react-native-stage-0/decorator-support",
+    "flow"
   ],
   "env": {
     "development": {
@@ -10,6 +11,7 @@
     }
   },
   "plugins": [
-    "relay"
+    "relay",
+    ["react-flow-props-to-prop-types", {}]
   ]
 }

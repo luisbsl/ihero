@@ -1,0 +1,13 @@
+[ignore]
+.*/node_modules/findup/test/.*
+.*/node_modules/react-native/Libraries/react-native/react-native-implementation.js
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]

@@ -1,8 +1,11 @@
+// @flow
+
 import React from 'react'
 import { createFragmentContainer } from 'react-relay'
 import { View, Image, Text, Dimensions, TouchableHighlight } from 'react-native'
 import styled from 'styled-components'
 
+import type { HeroType } from '../types/HeroType'
 import HeroStatsBadge from './HeroStatsBadge'
 
 const Container = styled.View`
@@ -48,27 +51,33 @@ const BadgesContainer = styled.View`
   margin-top: 7px;
 `
 
-export default class HeroCard extends React.Component {
+type Props = {
+  hero: HeroType,
+  navigation: Object
+}
+
+export default class HeroCard extends React.Component<Props> {
   render() {
-    const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation
+    const { hero } = this.props
     return (
-      this.props.hero
+      hero
         ?
-        <TouchableHighlight onPress={() => navigate('HeroDetail', { hero: this.props.hero })}>
+        <TouchableHighlight onPress={() => navigate('HeroDetail', { hero: hero })}>
           <Container>
             <ImageContainer>
               <StyledImage
                 resizeMode={'cover'}
-                source={{ uri: `${this.props.hero.image}` }} />
+                source={{ uri: `${hero.image}` }} />
             </ImageContainer>
             <InfoWrapper>
               <InfoContainer>
-                <Info>{this.props.hero.name.toUpperCase()}</Info>
+                <Info>{hero.name.toUpperCase()}</Info>
 
                 <BadgesContainer>
-                  <HeroStatsBadge bgColor={'#0066ff'} statName={'Comics'} statNumber={this.props.hero.comics} />
+                  <HeroStatsBadge bgColor={'#0066ff'} statName={'Comics'} statNumber={hero.comics} />
                   <View style={{ marginRight: 5 }} />
-                  <HeroStatsBadge bgColor={'#00cc00'} statName={'Series'} statNumber={this.props.hero.series} />
+                  <HeroStatsBadge bgColor={'#00cc00'} statName={'Series'} statNumber={hero.series} />
                 </BadgesContainer>
               </InfoContainer>
             </InfoWrapper>

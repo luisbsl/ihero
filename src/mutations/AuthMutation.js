@@ -41,6 +41,6 @@ const meQuery = graphql`
   }
 `
 
-export const MeQuery = (environment) => {
+export const MeQuery = (environment: Function) => {
   return fetchQuery(environment, meQuery)
 }

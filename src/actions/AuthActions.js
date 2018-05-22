@@ -1,3 +1,5 @@
+// @flow
+
 import ACTIONS_TYPE from './AuthActionsType'
 
 import { getUserToken, removeUserToken } from '../providers/StorageProvider'
@@ -18,7 +20,7 @@ const executeLogout = async () => {
 }
 
 const verifyLoggedIn = async () => {
-  const token = await getUserToken().then(token)
+  const token = await getUserToken().then(token => token)
   let isLoggedIn = false
   if (token !== null) {
     isLoggedIn = true

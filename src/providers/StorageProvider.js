@@ -1,6 +1,8 @@
+// @flow
+
 import { AsyncStorage } from 'react-native'
 
-const setUserToken = async (token) => {
+const setUserToken = async (token: string) => {
   try {
     let userToken = {
       key: 'token',
@@ -28,7 +30,7 @@ const getUserToken = async () => {
   }
 }
 
-const removeUserToken = async (_state) => {
+const removeUserToken = async () => {
   try {
     let userToken = {
       key: 'token'
