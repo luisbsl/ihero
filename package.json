@@ -23,7 +23,7 @@
     "jest": "^22.4.3",
     "jest-react-native": "^18.0.0",
     "prop-types": "^15.6.1",
-    "react-dom": "16.3.1",
+    "react-dom": "16.3.3",
     "react-native-storybook-loader": "^1.8.0",
     "react-test-renderer": "16.3.1",
     "relay-compiler": "^1.6.0"
